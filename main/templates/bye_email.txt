@@ -1,0 +1,18 @@
+
+
+As requested, you are not subscribed to the list {{list}} anymore.
+
+At any time, using your email {{email}}, you can subscribe again by connecting to 
+http://{{site.domain}}/list/{{list}}/
+(You can ask for a new password if needed).
+
+best regards,
+{{site.domain}} admin
+--
+Site powered by Colibri http://labs.freehackers.org/projects/colibri
+{% if list.unsubscribe %}
+
+This is the resignation message for this list :
+
+{{list.unsubscribe}}
+{% endif %}

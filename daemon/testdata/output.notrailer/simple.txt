@@ -1,0 +1,26 @@
+From: Thomas Capricelli <orzel@freehackers.org>
+To: annexe@freehackers.org
+Date: Sat, 15 Nov 2008 02:58:27 +0100
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Message-Id: <200811150258.28462.aoijj@fakehost.org>
+Status: RO
+X-Status: RS
+Subject: =?utf-8?q?=5Bfakelist=5D_Re=3A_a_oiefjaewfawjef_awefawef?=
+List-Software: Colibri http://labs.freehackers.org/projects/colibri/wiki
+Reply-To: fakelist@fakehost.org
+X-Loop: fakelist@fakehost.org
+Precedence: list
+X-no-archive: yes
+List-Post: <mailto:fakelist@fakehost.org>
+List-Owner: <mailto:fakelist-request@fakehost.org>
+List-Id: <fakelist.fakehost.org>
+Errors-to: fakelist-owner@fakehost.org
+
+awefiojaweoifjaweojawe aweoiawej oaweij aowef awe
+
+--
+Thomas

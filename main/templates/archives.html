@@ -1,0 +1,34 @@
+{% extends "base_site.html" %}
+{% block title %} Archive for {{list}}{% endblock %}
+
+
+{% block content %}
+
+<h1> {{list}} </h1>
+
+{% if archives %}
+    <ul>
+    {% for year in archives %}
+        <li> Archive for year <a href="{{year.0}}/">{{year.0}}</a>:
+	{% if "1" in year.1 %}<a href="{{year.0}}/1/">Jan.</a>{% else %}Jan.{% endif %}
+	{% if "2" in year.1 %}<a href="{{year.0}}/2/">Feb.</a>{% else %}Feb.{% endif %}
+	{% if "3" in year.1 %}<a href="{{year.0}}/3/">March</a>{% else %}March{% endif %}
+	{% if "4" in year.1 %}<a href="{{year.0}}/4/">April</a>{% else %}April{% endif %}
+	{% if "5" in year.1 %}<a href="{{year.0}}/5/">May</a>{% else %}May{% endif %}
+	{% if "6" in year.1 %}<a href="{{year.0}}/6/">June</a>{% else %}June{% endif %}
+	{% if "7" in year.1 %}<a href="{{year.0}}/7/">July</a>{% else %}July{% endif %}
+	{% if "8" in year.1 %}<a href="{{year.0}}/8/">Aug.</a>{% else %}Aug.{% endif %}
+	{% if "9" in year.1 %}<a href="{{year.0}}/9/">Sept.</a>{% else %}Sept.{% endif %}
+	{% if "10" in year.1 %}<a href="{{year.0}}/10/">Oct.</a>{% else %}Oct.{% endif %}
+	{% if "11" in year.1 %}<a href="{{year.0}}/11/">Nov.</a>{% else %}Nov.{% endif %}
+	{% if "12" in year.1 %}<a href="{{year.0}}/12/">Dec.</a>{% else %}Dec.{% endif %}
+	</li>
+    {% endfor %}
+    </ul>
+{% else %}
+There is no archive for this list, yet.
+{% endif %}
+
+{% endblock %}
+
+

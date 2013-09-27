@@ -1,0 +1,21 @@
+
+Hello,
+
+A request has been made on http://{{site.domain}} to confirm this email
+address.
+
+If this is not you, just ignore and delete this message, you will not be
+subscribed.
+
+To confirm this secondary email, simply click on the link below or paste
+into the url field in your favorite browser:
+
+http://{{site.domain}}/secondary_email/activate/{{activation_key}}/
+
+This link will only be available for {{expiration_days}} days, after that you will
+have to try again from the beginning.
+
+best regards,
+{{site.domain}} admin
+--
+Site powered by Colibri http://labs.freehackers.org/projects/colibri

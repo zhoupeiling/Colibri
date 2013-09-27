@@ -1,0 +1,17 @@
+
+Welcome to Colibri.
+
+To activate your account, simply click on the link below or paste into the
+url field in your favorite browser:
+
+http://{{site.domain}}/accounts/activate/{{activation_key}}/
+
+The link will only be good for 30 days, after that you will have to try
+again from the beginning. When you visit the above page, you'll be able to
+set your password and create as many gravatars as you like, all for free!
+
+If you have any questions about the system, feel free to contact us
+anytime.
+
+best regards
+Colibri team

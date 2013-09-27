@@ -1,0 +1,26 @@
+
+Hello,
+
+A request has been made on http://{{site.domain}} to subscribe this email
+address to the mailing list {{list}}.
+
+If this is not you, just ignore and delete this message, you will not be
+subscribed.
+
+To confirm the subscription, and activate your account on {{site.domain}},
+simply click on the link below or paste into the url field in your favorite
+browser:
+
+http://{{site.domain}}/accounts/activate/{{activation_key}}/
+
+This link will only be available for {{expiration_days}} days, after that you will
+have to try again from the beginning.
+
+The account has been created using the following information
+    email : {{email}}
+    password : {{password}}
+
+best regards,
+{{site.domain}} admin
+--
+Site powered by Colibri http://labs.freehackers.org/projects/colibri

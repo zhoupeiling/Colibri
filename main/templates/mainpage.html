@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+{% block title %}Colibri Mailing Lists Manager - Main Page{% endblock %}
+
+{% block content %}
+
+
+<h1>Mailing lists manager for freehackers.org</h1>
+
+<br/>
+
+{% if lists %}
+    Public list{{lists|pluralize}} hosted on this server:
+    <ul>
+    {% for l in lists %}
+    <li> <a href="{% url "main.views.display_list_info" l%}">{{l}}</a> : {{l.subject}}
+    {% endfor %}
+    </ul>
+{% else %}
+There is no publicly visible list on this site.
+{% endif %}
+
+{% if topics %}
+    Browse public mailing lists by topic:
+    <ul>
+    {% for t in topics %}
+    <li> <a href="{% url "main.views.display_topic_info" t.name %}">{{t.name}}</a> : {{t.description}}
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+<br/>
+
+{% endblock %}
+

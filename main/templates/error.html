@@ -1,0 +1,29 @@
+{% extends "base_site.html" %}
+
+
+{% block title %}Error !{% endblock %}
+
+{% block content %}
+
+<br/>
+<br/>
+<h1>
+{% if errorname%}
+{{errorname}}
+{% else %}
+Error !
+{% endif %}
+</h1>
+
+{{ message|safe|linebreaks}}
+
+<br/>
+<br/>
+{% if returnpage%}
+<a href="{{returnpage}}">Click here</a> to continue.
+<br/>
+<br/>
+{% endif %}
+
+{% endblock %}
+

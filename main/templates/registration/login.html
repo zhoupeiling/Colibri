@@ -1,0 +1,44 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+
+{% block title%}Login{% endblock %}
+
+{% block content %}
+
+<h1>Connect to Colibri Mailing List</h1>
+<br/>
+
+{% if form.errors %}
+<p> <font color=red>
+{{form.errors}}
+</font> </p>
+{% endif %}
+
+<div id="content-main">
+
+<form method="post" action="{% url "auth_login" %}">
+{% csrf_token %}
+    <table>
+    <tr>
+        <td>{% trans 'email :' %}</td>
+        <td>{{ form.email}}</td>
+    </tr>
+    <tr>
+        <td>{% trans 'Password:' %}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+    </table>
+
+<input type="submit" value="{% trans 'Log in' %}" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<br/> <br/>
+
+<a href='{% url "auth_password_reset" %}'>I forgot my password</a>
+
+<script type="text/javascript">
+document.getElementById('id_email').focus()
+</script>
+</div>
+{% endblock %}

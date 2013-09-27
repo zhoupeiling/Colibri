@@ -1,0 +1,44 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+
+{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/login.css{% endblock %}
+{% block bodyclass %}login{% endblock %}
+{% block content_title %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">Compte activé</h1>
+{% endblock %}
+
+{% block content %}
+<br/>
+<br/>
+
+{% if account %}
+
+Congratulations!
+<br/>
+<br/>
+
+You account is now activated.
+
+You now have access to <a href="/myaccount/">your personal page</a>.
+
+
+{% else %}
+
+Bad identification!
+<br/>
+<br/>
+
+Either this key is invalid, or the account has already been activated.
+
+{% endif%}
+
+<br/>
+<br/>
+greetings,
+<br/>
+Colibri team
+
+{% endblock %}

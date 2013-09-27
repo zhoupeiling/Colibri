@@ -1,0 +1,40 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+
+{% block bodyclass %}login{% endblock %}
+{% block content_title %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block userlinks %}
+{% endblock %}
+
+{% block content %}
+
+<center>
+<h1>Register an account at Colibri</h1>
+</center>
+
+<br/>
+<style type="text/css">
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+    }
+    .errorlist li {
+        background-color: red;
+        color: white;
+        display: block;
+        font-size: 10px;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+    }
+</style>
+    <form enctype="multipart/form-data" method="POST">
+        <table>
+            {{ form.as_table }}
+        </table>
+        <p><input type="submit" value="Register"></p>
+    </form>
+
+{% endblock content %}
+

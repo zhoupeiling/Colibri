@@ -1,0 +1,38 @@
+
+
+Goal:
+=====
+
+Use django.contrib.auth.models.User based authentication and
+django-registration "DefaultBackend", but without the
+username. That is, only based on the email. To do that, we need to override
+
+* the backend for authentication
+* the backend for registration
+* the form for authentication
+* the form for registration
+
+That's what this application does.
+To use it, load the registration default backend url, as you would usually
+do (read django-registration doc), but add two parameters, this way:
+
+    from usernameless.forms import UsernameLessAuthenticationForm
+    ...
+    (r'^accounts/', include('registration.backends.default.urls'), {
+        'authentication_form': UsernameLessAuthenticationForm,
+        'backend': 'usernameless.auth.UsernameLessRegistrationBackend',
+    }),
+
+The 'authentication_form' will override the auth form, the 'backend' will
+override the registration backend.
+The registration form is taken from the backend, so nothing more is to be
+done.
+The only remaining thing to override is the auth backend, which is done by
+adding this to your settings.py: 
+
+    AUTHENTICATION_BACKENDS = (
+        'usernameless.auth.UsernameLessAuthenticationBackend',
+    )
+
+AND tweaks your template. There's no more 'username' but only 'email' and
+'password' (or 'password1'/'password2') fields in forms.

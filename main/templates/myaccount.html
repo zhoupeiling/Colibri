@@ -1,0 +1,78 @@
+{% extends "base_site.html" %}
+{% block title %}Colibri Mailing Lists Manager - My account - {{ user.email|escape }}{% endblock %}
+
+
+{% block content %}
+
+<h1>Account configuration for {{ user.email|escape }}</h1>
+
+{% if subscriptions %}
+You are subscribed to the following list{{subscriptions|pluralize}}:
+    <ul>
+    {% for s in subscriptions%}
+    <li> <a href="{% url "main.views.display_list_info" s.list%}">{{s.list}}</a> , since {{s.started|date:"D d M Y"}}
+    {% endfor %}
+    </ul>
+
+{% else %}
+You are not subscribed to any list.
+{% endif %}
+
+{% if mylists %}
+You are managing the following list{{mylists|pluralize}}:
+    <ul>
+    {% for l in mylists%}
+    <li> <a href="{% url "main.views.list_manage" l%}">{{l}}</a>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if moderator_on %}
+You are moderator on the following list{{moderator_on|pluralize}}:
+    <ul>
+    {% for sub in moderator_on %}
+    <li> <a href="{% url "main.views.display_list_info" sub.list%}">{{sub.list}}</a>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+<h3>Primary email</h3>
+
+Your primary email is <b>{{user.email}}</b>. All messages are sent to this address, and this is the email used for authentication on this website.
+
+
+<h3>Secondary emails</h3>
+You can declare secondary email addresses.
+If you post to a mailing list using such a secondary email address, it will not be rejected as 'unknown'.
+<br/> <br/>
+{% if secondary_emails %}
+You have declared the following email{{secondary_emails|pluralize}} as being yours. The confirmed ones
+have a green <i>confirmed</i> icon, and the unconfirmed ones have a red cross
+<i>unconfirmed</i> icon.
+    <ul>
+    {% for o in secondary_emails %}
+        {% if o.confirmed %}
+        <li> <img src="{{STATIC_URL}}images/checked.png" alt="Confirmed"/> {{o.email}}: <a href="{% url "main.views.remove_secondary_email" o.id%}">remove</a>, <a href="{% url "main.views.switch_secondary_email" o.id%}">use as primary address</a>
+        {% endif %}
+    {% endfor %}
+    {% for o in secondary_emails %}
+        {% if not o.confirmed %}
+        <li> <img src="{{STATIC_URL}}images/unchecked.png" alt="Unconfirmed"/> {{o.email}}: <a href="{% url "main.views.remove_secondary_email" o.id%}">remove</a>, <a href="{% url "main.views.confirm_secondary_email" o.id%}">send confirmation email</a>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+You do not have any secondary email declared. 
+{% endif %}
+
+<br/> <br/>
+<form action="/myaccount/" method="POST"> {% csrf_token %}
+{{form.email.errors}}
+Email: {{ form.email }}
+    <input type="submit" value="Add a secondary email">
+</form>
+
+{% endblock %}
+
+

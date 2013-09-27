@@ -1,0 +1,33 @@
+{% extends "base_site.html" %}
+{% block title %} Subscribers for {{list}}{% endblock %}
+
+
+{% block content %}
+
+<h1> {{list}} </h1>
+
+<ul>
+<table border="1" >
+  <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Last updated</th>
+    </tr>
+  </thead>
+    {% for profile in subscribers %}
+    <tr>
+        <td>{{profile.user.first_name}}</td>
+        <td>{{profile.user.last_name}}</td>
+        <td>{{profile.user.email}}</td>
+        <td>{{profile.updated}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</ul>
+
+
+{% endblock %}
+
+

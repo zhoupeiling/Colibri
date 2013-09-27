@@ -1,0 +1,73 @@
+#!/bin/env python
+# -*- coding: utf-8
+# vim: set fileencoding=utf-8
+
+
+"""
+This small script is to help spooling mail from MTA[1] that can not create
+one file for each mail ("Maildir"). Most of them can pipe mail to a
+command, as in "myexample@foobar.com: "|/path/to/command argtoommand" in aliases
+file for example.
+
+This script is such a command, and will create a unique filename with what
+is found  on stdin
+
+It is not finished yet as i dont need it anymore, but feel free to finish
+it as an exercise :)
+
+[1] : http://en.wikipedia.org/wiki/Mail_transfer_agent
+
+"""
+
+# system stuff
+
+#django  stuff
+import sys, time, random
+from os import path
+from datetime import date
+sys.path.append(path.dirname(path.dirname( path.abspath( __file__) ))) # base dir
+
+# avoid loading the whole django stuff : take only the needed variables
+from colibrisettings import INCOMING_DIR 
+
+# actually generates key
+from string import ascii_letters, digits
+validchar= ascii_letters+digits
+validcharlen = len(validchar)
+def key():
+    s=''
+    for i in range(16):
+        s+= validchar[random.randint(0,validcharlen-1)]
+    return s
+
+def main():
+    argv=sys.argv
+    if len(argv)!=2 or argv[1].find('@')==-1:
+        print "Usage : %s address" % argv[0]
+        print "Where address is the address of a mailing list and should contain one and only one character '@'"
+        print " "
+        sys.exit(1)
+    address = argv[1]
+    (name, host) = address.split('@')
+    # Format colibri-spool-<name>-<host>-<year>-<month>-<day><bigtimestamp>-<random>"
+    # where bigtimestamp is timestamp * 10^7
+    # and random is here because i'm paranoid
+    # yes i know date and timestamp are redundant but
+    #        1) it provides valuable information in the filename
+    #        2) i'm paranoid, i mean it
+    today = date.today()
+    filename = "colibri-%(name)s-%(host)s-%(year)s-%(month)s-%(day)s-%(bigtimestamp)d-%(random)s" % {
+            'name':name,
+            'host': host,
+            'year': today.year,
+            'month': today.month,
+            'day': today.day,
+            'bigtimestamp': int(time.time()*1E7),
+            'random':key()
+    }
+    print filename
+    print INCOMING_DIR+filename
+
+# if python says run, then we should run
+if __name__ == '__main__':
+    main() 

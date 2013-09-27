@@ -1,0 +1,20 @@
+
+
+Welcome!
+
+You have just been subscribed to the list {{list}}
+
+At any time, using your email {{email}}, you can unsubscribe by connecting to 
+http://{{site.domain}}/list/{{list}}/
+(You can ask for a new password if needed).
+
+best regards,
+{{site.domain}} admin
+--
+Site powered by Colibri http://labs.freehackers.org/projects/colibri
+{% if list.unsubscribe %}
+
+This is the welcome message for this list :
+
+{{list.subscribe}}
+{% endif %}

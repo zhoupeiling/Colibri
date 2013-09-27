@@ -1,0 +1,32 @@
+#!/sbin/runscript
+# Copyright 2008-2009 Thomas Capricelli <orzel@freehackers.org>
+
+# this file should be installed as /etc/init.d/colibrid
+
+
+# you may need to add the path for django here :
+#export PYTHONPATH=$PYTHONPATH:/path/to/django
+
+# path for colibrid
+export COLIBRID=/path/to/colibrid.py
+export COLIBRI_PIDFILE=/var/run/colibri/colibrid.pid
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting colibrid"
+	eval start-stop-daemon --start --pidfile $COLIBRI_PIDFILE --chuid postfix --exec $COLIBRID -- --fork
+	eend $?
+}
+
+stop() {
+	# SIGINT = control-c
+	ebegin "Stopping colibrid"
+	# first, try to be nice
+	start-stop-daemon --stop --exec $COLIBRID --quiet --retry SIGTERM/20 --pidfile $COLIBRI_PIDFILE
+	# make him a proposal he can not refuse
+	start-stop-daemon --stop --exec $COLIBRID --quiet --retry SIGKILL/20 --pidfile $COLIBRI_PIDFILE
+	eend $?
+}

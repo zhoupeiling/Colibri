@@ -1,0 +1,11 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+{{ block.super }}
+<script language="javascript" type="text/javascript" src="{{STATIC_URL}}js/ckeditor/ckeditor.js"></script>
+<script language="javascript" type="text/javascript">var $ = jQuery = django.jQuery.noConflict();</script>
+<script language="javascript" type="text/javascript" src="{{STATIC_URL}}js/ckeditor/adapters/jquery.js"></script>
+<script language="javascript" type="text/javascript"> $(document).ready( function(){ $('#id_description').ckeditor({height:"200px"}); });</script>
+<style type="text/css"> div>.cke_skin_kama{ width: 100%; padding: 0!important; clear: both; }</style>
+{% endblock %}
+

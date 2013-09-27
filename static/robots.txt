@@ -1,0 +1,11 @@
+User-agent: *
+Crawl-delay: 100
+Disallow: /admin
+Disallow: /media
+Disallow: /static
+Disallow: /myaccount
+
+User-agent: Slurp
+Disallow: /
+Crawl-delay: 100
+

@@ -1,0 +1,24 @@
+{% extends "base_site.html" %}
+{% block title %}Information about topic {{topic.name}}{% endblock %}
+
+
+{% block content %}
+<h1>Topic: {{topic.name}}</h1>
+
+<hr/> {{topic.description|safe}} <hr/>
+
+{% if lists %}
+    Mailing list{{lists.count|pluralize}} in this topic:
+    <ul>
+    {% for l in lists %}
+    <li> <a href="{% url "main.views.display_list_info" l %}">{{l}}</a> : {{l.subject}}
+    {% endfor %}
+    </ul>
+{% else %}
+There is no mailing list (yet?) in this topic.
+{% endif %}
+
+
+{% endblock %}
+
+

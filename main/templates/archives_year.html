@@ -1,0 +1,26 @@
+{% extends "base_site.html" %}
+{% block title %} Archive for {{list}}, {{year}} {% endblock %}
+
+{% block content %}
+
+<h1> {{list}}, {{year}} </h1>
+
+<ul>
+    <li>{% if "1" in archives %}<a href="1/">January:</a> {{archives.1}} mails.{% else %}January : No mail.{% endif %}
+    <li>{% if "2" in archives %}<a href="2/">February:</a> {{archives.2}} mails.{% else %}February : No mail.{% endif %}
+    <li>{% if "3" in archives %}<a href="3/">March:</a> {{archives.3}} mails.{% else %}March : No mail.{% endif %}
+    <li>{% if "4" in archives %}<a href="4/">April:</a> {{archives.4}} mails.{% else %}April : No mail.{% endif %}
+    <li>{% if "5" in archives %}<a href="5/">May:</a> {{archives.5}} mails.{% else %}May : No mail.{% endif %}
+    <li>{% if "6" in archives %}<a href="6/">June:</a> {{archives.6}} mails.{% else %}June : No mail.{% endif %}
+    <li>{% if "7" in archives %}<a href="7/">July:</a> {{archives.7}} mails.{% else %}July : No mail.{% endif %}
+    <li>{% if "8" in archives %}<a href="8/">August:</a> {{archives.8}} mails.{% else %}August : No mail.{% endif %}
+    <li>{% if "9" in archives %}<a href="9/">September:</a> {{archives.9}} mails.{% else %}September : No mail.{% endif %}
+    <li>{% if "10" in archives %}<a href="10/">October:</a> {{archives.10}} mails.{% else %}October : No mail.{% endif %}
+    <li>{% if "11" in archives %}<a href="11/">November:</a> {{archives.11}} mails.{% else %}Novemer : No mail.{% endif %}
+    <li>{% if "12" in archives %}<a href="12/">December:</a> {{archives.12}} mails.{% else %}December : No mail.{% endif %}
+</ul>
+<a href="../">All archives for this list.</a>
+
+{% endblock %}
+
+
