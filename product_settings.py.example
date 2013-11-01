@@ -1,0 +1,22 @@
+from settings import *
+
+# filebased.EmailBackend is use for debug, but for the product environment
+# smtp.EmailBackend will be use.
+# DO NOT CHANGE IT IF YOU DON'T KNOWN WHAT's IT MEANING.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP server host
+EMAIL_HOST = 'localhost'
+
+# SMTP server port
+EMAIL_PORT = 25
+
+# SMTP server user name if authentication is enabled.
+EMAIL_HOST_USER = ''
+
+# SMTP server password if authencation is enabled.
+EMAIL_HOST_PASSWORD = ''
+
+# SMTP server SSL configurations.
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False

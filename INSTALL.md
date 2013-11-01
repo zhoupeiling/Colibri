@@ -74,6 +74,17 @@ as `/etc/init.d/colibrid`. The script is probably easy to adapt to other
 distribution. Please contact author if you do so, I will include it in the
 source code, and I will be able to update it when/if modifications are made.
 
+Product settings
+----------------
+
+`product_settings.py.example` is the sample for the server configurations for
+product environment.
+
+Just copy or rename it to product_setting.py, and update the file for correct
+settings, the colibrid and services will could enable the settings.
+
+for more informations please follow comments in the file.
+
 Solving problems
 ----------------
 

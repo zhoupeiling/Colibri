@@ -35,7 +35,7 @@ from os import getpid, path, environ, system, unlink, listdir, stat, mkdir, umas
 basedir = path.dirname(path.dirname(path.abspath( __file__)))
 sys.path.append(basedir)
 # set environment variable DJANGO_SETTINGS_MODULE to make django happy
-environ[ 'DJANGO_SETTINGS_MODULE' ] = 'settings'
+environ[ 'DJANGO_SETTINGS_MODULE' ] = 'product_settings'
 
 from main.models import *
 from settings import INCOMING_DIR, REJECT_DIR, BOUNCED_DIR, ARCHIVE_DIR, PIDFILE
