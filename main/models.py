@@ -21,6 +21,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from settings import ARCHIVE_DIR, ACCOUNT_ACTIVATION_DAYS, DEFAULT_FROM_EMAIL
+from django.db.models import signals
 
 class Profile(models.Model):
     user = models.ForeignKey(User, unique=True)
@@ -202,3 +203,9 @@ class Subscription(models.Model):
     moderator = models.BooleanField(default=False)
     class Meta:
         unique_together = ('profile', 'list',)
+
+def user_post_save_handler(sender, instance, created, signal, *args, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+signals.post_save.connect(user_post_save_handler, sender=User)
