@@ -5,40 +5,46 @@
 
 {% block content %}
 
-<h1>Connect to Colibri Mailing List</h1>
-<br/>
+<div class="row"><div class="span12 offset2"><h3>Connect to Colibri Mailing List</h3></div></div>
 
-{% if form.errors %}
-<p> <font color=red>
-{{form.errors}}
-</font> </p>
-{% endif %}
+<div class="row">
+<div class="span12">
+   <div class="row">
+     <div class="span12 offset2">
+   {% if form.errors %}
+   <p> <font color=red>
+   {{form.errors}}
+   </font> </p>
+   {% endif %}
+     </div>
+   </div>
 
-<div id="content-main">
-
-<form method="post" action="{% url "auth_login" %}">
+<form method="post" class="form-horizontal" action="{% url "auth_login" %}">
 {% csrf_token %}
-    <table>
-    <tr>
-        <td>{% trans 'email :' %}</td>
-        <td>{{ form.email}}</td>
-    </tr>
-    <tr>
-        <td>{% trans 'Password:' %}</td>
-        <td>{{ form.password }}</td>
-    </tr>
-    </table>
-
-<input type="submit" value="{% trans 'Log in' %}" />
-<input type="hidden" name="next" value="{{ next }}" />
+    <div class="control-group">
+        <label class="control-label" for="id_email">{% trans 'email :' %}</label>
+        <div class="controls">
+            {{ form.email}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_password">{% trans 'Password:' %}</label>
+        <div class="controls">
+            {{ form.password}}
+            <a class="btn btn-link btn-mini" href='{% url "auth_password_reset" %}'><span class="text-error">I forgot my password</span></a>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">        
+            <button class="btn btn-large btn-primary" type="submit">{% trans 'Log in' %}</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </div>
 </form>
-
-<br/> <br/>
-
-<a href='{% url "auth_password_reset" %}'>I forgot my password</a>
 
 <script type="text/javascript">
 document.getElementById('id_email').focus()
 </script>
+</div>
 </div>
 {% endblock %}

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>Account configuration for {{ user.email|escape }}</h1>
+<h3>Account configuration for {{ user.email|escape }}</h3>
 
 {% if subscriptions %}
 You are subscribed to the following list{{subscriptions|pluralize}}:
@@ -36,43 +36,41 @@ You are moderator on the following list{{moderator_on|pluralize}}:
     </ul>
 {% endif %}
 
+<div>
+    <h3>Primary email</h3>
+    <p>Your primary email is <b>{{user.email}}</b>. All messages are sent to this address, and this is the email used for authentication on this website.</p>
+</div>
 
-<h3>Primary email</h3>
-
-Your primary email is <b>{{user.email}}</b>. All messages are sent to this address, and this is the email used for authentication on this website.
-
-
-<h3>Secondary emails</h3>
-You can declare secondary email addresses.
-If you post to a mailing list using such a secondary email address, it will not be rejected as 'unknown'.
-<br/> <br/>
-{% if secondary_emails %}
-You have declared the following email{{secondary_emails|pluralize}} as being yours. The confirmed ones
-have a green <i>confirmed</i> icon, and the unconfirmed ones have a red cross
-<i>unconfirmed</i> icon.
-    <ul>
-    {% for o in secondary_emails %}
-        {% if o.confirmed %}
-        <li> <img src="{{STATIC_URL}}images/checked.png" alt="Confirmed"/> {{o.email}}: <a href="{% url "main.views.remove_secondary_email" o.id%}">remove</a>, <a href="{% url "main.views.switch_secondary_email" o.id%}">use as primary address</a>
-        {% endif %}
-    {% endfor %}
-    {% for o in secondary_emails %}
-        {% if not o.confirmed %}
-        <li> <img src="{{STATIC_URL}}images/unchecked.png" alt="Unconfirmed"/> {{o.email}}: <a href="{% url "main.views.remove_secondary_email" o.id%}">remove</a>, <a href="{% url "main.views.confirm_secondary_email" o.id%}">send confirmation email</a>
-        {% endif %}
-    {% endfor %}
-    </ul>
-{% else %}
-You do not have any secondary email declared. 
-{% endif %}
-
-<br/> <br/>
-<form action="/myaccount/" method="POST"> {% csrf_token %}
-{{form.email.errors}}
-Email: {{ form.email }}
-    <input type="submit" value="Add a secondary email">
-</form>
-
+<div>
+    <h3>Secondary emails</h3>
+    <p>You can declare secondary email addresses.
+       If you post to a mailing list using such a secondary email address, it will not be rejected as 'unknown'.</p>
+    {% if secondary_emails %}
+        <p>You have declared the following email{{secondary_emails|pluralize}} as being yours. The confirmed ones
+       have a green <i>confirmed</i> icon, and the unconfirmed ones have a red cross <i>unconfirmed</i> icon.</p>
+        <ul>
+        {% for o in secondary_emails %}
+            {% if o.confirmed %}
+            <li> <img src="{{STATIC_URL}}images/checked.png" alt="Confirmed"/> {{o.email}}: <a href="{% url "main.views.remove_secondary_email" o.id%}">remove</a>, <a href="{% url "main.views.switch_secondary_email" o.id%}">use as primary address</a>
+            {% endif %}
+        {% endfor %}
+        {% for o in secondary_emails %}
+            {% if not o.confirmed %}
+            <li> <img src="{{STATIC_URL}}images/unchecked.png" alt="Unconfirmed"/> {{o.email}}: <a href="{% url "main.views.remove_secondary_email" o.id%}">remove</a>, <a href="{% url "main.views.confirm_secondary_email" o.id%}">send confirmation email</a>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You do not have any secondary email declared.</p>
+    {% endif %}
+    
+    <form action="/myaccount/" method="POST" class="form-inline"> {% csrf_token %}
+        {{form.email.errors}}
+        <label class="sr-only" for="id_email">Email:</label>
+        {{ form.email }}
+        <input type="submit" value="Add a secondary email">
+    </form>
+</div>
 {% endblock %}
 
 

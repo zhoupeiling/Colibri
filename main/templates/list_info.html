@@ -4,16 +4,13 @@
 
 {% block menu %}
 <hr/>
-<br/>
 {% if can_browse_archive %}
-<a href="{% url "main.views.list_archives" list %}">Archives</a><br/>
+<li><a href="{% url "main.views.list_archives" list %}">Archives</a><li>
 {% endif %}
 {% if can_browse_subscribers %}
-<a href="{% url "main.views.list_subscribers" list %}">Subscribers</a><br/>
+<li><a href="{% url "main.views.list_subscribers" list %}">Subscribers</a></li>
 {% endif %}
 {% endblock %}
-
-
 
 {% block content %}
 <h1> {{list}} </h1>
@@ -21,19 +18,19 @@
 <div style="padding-left:100px">
     {{list.subject}}
     {% if list.topic.all %}
-    <br/>Topic{{list.topic.all.count|pluralize}}:
+    <br>Topic{{list.topic.all.count|pluralize}}:
         {% for t in list.topic.all %}
         <a href="{% url "main.views.display_topic_info" t.name %}">{{t.name}}</a>&nbsp;
         {% endfor %}
     {% endif %}
 </div>
 
-<br/>
+<div class="row-fluid"><div class="span12"></div></div>
 <hr/> {{list.description|safe}} <hr/>
-<br/>
+
 {% if subscription%}
 You are subscribed to this list since {{subscription.started.date|date:"D d M Y" }}.
-<br/> <br/>
+<div class="row-fluid"><div class="span12"></div></div>
 
 {% ifequal list.owner.user user %}
 You can not unsubscribe from a list that belongs to you.
@@ -45,10 +42,10 @@ You can not unsubscribe from a list that belongs to you.
 </form>
 {%else %}
 Subscribe to this mailing list <b>now!</b>:
-<br/> <br/>
-<form action="/list/{{list}}/subscribe/" method="POST"> {% csrf_token %}
+<div class="row-fluid"><div class="span12"></div></div>
+<form action="/list/{{list}}/subscribe/" method="POST" class="form-inline"> {% csrf_token %}
 {{form.email.errors}}
-{% if not profile %} Email: {{ form.email }} {% endif %}
+{% if not profile %} <label class="sr-only" for="id_email">Email:</label> {{ form.email }} {% endif %}
     <input type="submit" value="Subscribe">
 </form>
 

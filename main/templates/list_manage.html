@@ -17,13 +17,14 @@
 
 <h1>Manage list {{list}}</h1>
 
-<br/> <br/>
+<div class="row-fluid"><div class="span12"></div></div>
 <form action="" method="POST"> {% csrf_token %}
-<table>
+<table class="table">
 {{ form.as_table}}
 </table>
     <input type="submit" value="Save">
 </form>
+
 
 {% endblock %}
 

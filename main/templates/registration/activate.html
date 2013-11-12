@@ -11,14 +11,13 @@
 {% endblock %}
 
 {% block content %}
-<br/>
-<br/>
-
+<div class="row-fluid"><div class="span12"></div></div>
+<div class="row-fluid">
+<div class="span12">
 {% if account %}
 
 Congratulations!
-<br/>
-<br/>
+<div class="row-fluid"><div class="span12"></div></div>
 
 You account is now activated.
 
@@ -28,17 +27,16 @@ You now have access to <a href="/myaccount/">your personal page</a>.
 {% else %}
 
 Bad identification!
-<br/>
-<br/>
+<div class="row-fluid"><div class="span12"></div></div>
 
 Either this key is invalid, or the account has already been activated.
 
 {% endif%}
 
-<br/>
-<br/>
+<div class="row-fluid"><div class="span12"></div></div>
 greetings,
-<br/>
+<div class="row-fluid"><div class="span12"></div></div>
 Colibri team
-
+</div>
+</div>
 {% endblock %}

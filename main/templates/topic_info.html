@@ -11,7 +11,7 @@
     Mailing list{{lists.count|pluralize}} in this topic:
     <ul>
     {% for l in lists %}
-    <li> <a href="{% url "main.views.display_list_info" l %}">{{l}}</a> : {{l.subject}}
+    <li> <a href="{% url "main.views.display_list_info" l %}">{{l}}</a> : {{l.subject}}</li>
     {% endfor %}
     </ul>
 {% else %}

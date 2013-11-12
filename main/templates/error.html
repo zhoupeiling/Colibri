@@ -5,25 +5,30 @@
 
 {% block content %}
 
-<br/>
-<br/>
-<h1>
-{% if errorname%}
-{{errorname}}
-{% else %}
-Error !
-{% endif %}
-</h1>
+<div class="row-fluid"><div class="span12"></div></div>
+<div class="row-fluid">
+    <div class="span12">
+        <h1>
+            {% if errorname%}
+            {{errorname}}
+            {% else %}
+            Error !
+            {% endif %}
+        </h1>
+    </div>
+</div>
 
-{{ message|safe|linebreaks}}
+<div class="row-fluid">{{ message|safe|linebreaks}}</div></div>
 
-<br/>
-<br/>
-{% if returnpage%}
-<a href="{{returnpage}}">Click here</a> to continue.
-<br/>
-<br/>
-{% endif %}
+<div class="row-fluid"><div class="span12"></div></div>
+<div class="row-fluid">
+    <div class="span12">
+        {% if returnpage%}
+        <a href="{{returnpage}}">Click here</a> to continue.
+        {% endif %}
+    </div>
+</div>
+
 
 {% endblock %}
 
